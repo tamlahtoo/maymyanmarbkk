@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "86900480207",
+    "project_id": "may-myanmar",
+    "storage_bucket": "may-myanmar.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:86900480207:android:08086f4ae4540964dcffba",
+        "android_client_info": {
+          "package_name": "com.maymyanmar.android"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "86900480207-7hb6etib1spopdbblsqrp0ssqk3hoiq1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAazbel_dFq4RYvi36e4q6wzRvJfJ83D6s"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "86900480207-7hb6etib1spopdbblsqrp0ssqk3hoiq1.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
