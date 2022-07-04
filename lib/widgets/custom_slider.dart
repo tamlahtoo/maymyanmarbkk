@@ -70,10 +70,10 @@ class _CustomSliderWidgetState extends State<CustomSliderWidget> {
               onPageChanged: (index, reason) {
                 setActiveDot(index);
               },
-              enableInfiniteScroll: false,
+              enableInfiniteScroll: true,
               autoPlay: true,
               autoPlayCurve: Curves.fastLinearToSlowEaseIn,
-              autoPlayAnimationDuration: Duration(seconds: 2),
+              autoPlayAnimationDuration: Duration(seconds: 4),
               // autoPlay: true,
               viewportFraction: 1.0,
             ),

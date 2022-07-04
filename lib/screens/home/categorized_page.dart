@@ -118,7 +118,8 @@ class _CategorizedPageState extends State<CategorizedPage> {
                       '${product.name}',
                       style: TextStyle(fontWeight: FontWeight.w500, fontSize: 16),
                     ),
-                    SizedBox(height: 10,),
+                    // SizedBox(height: 10,),
+                    Expanded(child: Container(),),
                     Text(
                       '${product.price} ${currentUser.country=='th'?'THB':'Ks'}',
                       style: TextStyle(color: Colors.green, fontSize: 14),

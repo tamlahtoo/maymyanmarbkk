@@ -11,6 +11,7 @@ import 'package:maymyanmar/models/user.dart';
 import 'package:maymyanmar/providers/auth_provier.dart';
 import 'package:maymyanmar/providers/home_provider.dart';
 import 'package:maymyanmar/screens/cart/cart_page.dart';
+import 'package:maymyanmar/screens/home/brand_page.dart';
 import 'package:maymyanmar/screens/home/categorized_page.dart';
 import 'package:maymyanmar/screens/product_detail/product_page.dart';
 import 'package:maymyanmar/screens/search/search_page.dart';
@@ -234,7 +235,12 @@ class _HomePageState extends State<HomePage> {
             GestureDetector(
               child: Container(margin:EdgeInsets.only(right:10 ,top: 10),child: Text('See All',style: TextStyle(fontSize: 16,color: Colors.pink),)),
               onTap: () {
-                print('hello');
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => BrandPage()
+                  ),
+                );
               },
             ),
           ],
