@@ -79,8 +79,8 @@ getCatProductsService(String token,int pageNumber,int catID) async {
   }
 }
 
-getCategoriesService(String token) async {
-  final response = await http.get(Uri.parse(baseUrl + "categories?token=$token"),);
+getCategoriesService(String token,String type) async {
+  final response = await http.get(Uri.parse(baseUrl + "categories?token=$token&type=$type"),);
   if (response.statusCode == 200) {
     var data = jsonDecode(response.body.toString());
     ///check the status

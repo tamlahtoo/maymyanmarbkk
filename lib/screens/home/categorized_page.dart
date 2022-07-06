@@ -14,7 +14,8 @@ class CategorizedPage extends StatefulWidget {
   final int id;
   final String name;
 
-  const CategorizedPage({Key? key, required this.id, required this.name}) : super(key: key);
+  const CategorizedPage({Key? key, required this.id, required this.name})
+      : super(key: key);
   @override
   _CategorizedPageState createState() => _CategorizedPageState();
 }
@@ -26,8 +27,10 @@ class _CategorizedPageState extends State<CategorizedPage> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    Provider.of<HomeProvider>(context, listen: false).clearCategorizedProducts();
-    Provider.of<HomeProvider>(context, listen: false).getCategorizedProducts(widget.id);
+    Provider.of<HomeProvider>(context, listen: false)
+        .clearCategorizedProducts();
+    Provider.of<HomeProvider>(context, listen: false)
+        .getCategorizedProducts(widget.id);
     _controller.addListener(() {
       if (_controller.position.atEdge) {
         bool isTop = _controller.position.pixels == 0;
@@ -43,36 +46,46 @@ class _CategorizedPageState extends State<CategorizedPage> {
 
   @override
   Widget build(BuildContext context) {
-    List<Product> catProducts = context.watch<HomeProvider>().categorizedProduct;
+    List<Product> catProducts =
+        context.watch<HomeProvider>().categorizedProduct;
     User currentUser = context.read<AuthProvider>().currentUser;
     return SafeArea(
-      child: Scaffold(
-        appBar: AppBar(
-          // preferredSize: Size.fromHeight(55),
-          leadingWidth: 30,
-          backgroundColor: pink,
-          centerTitle: true,
-          title: Text('${widget.name}'),
-        ),
-        body: ListView.builder(
-          controller: _controller,
-          itemCount: catProducts.length,
-          addAutomaticKeepAlives: true,
-          cacheExtent: double.infinity,
-          itemBuilder: (context, index) {
-            return buildProducts(catProducts[index],currentUser);
-          },
+      child: WillPopScope(
+        onWillPop: (){
+          Navigator.of(context).pop();
+          return Future.value(false);
+        },
+        child: Scaffold(
+          appBar: AppBar(
+            // preferredSize: Size.fromHeight(55),
+            leadingWidth: 30,
+            backgroundColor: pink,
+            centerTitle: true,
+            title: Text('${widget.name}'),
+          ),
+          body: ListView.builder(
+            controller: _controller,
+            itemCount: catProducts.length,
+            addAutomaticKeepAlives: true,
+            cacheExtent: double.infinity,
+            itemBuilder: (context, index) {
+              return buildProducts(catProducts[index], currentUser);
+            },
+          ),
         ),
       ),
     );
   }
 
-  GestureDetector buildProducts(Product product,User currentUser) {
+  GestureDetector buildProducts(Product product, User currentUser) {
     return GestureDetector(
-      onTap: (){
+      onTap: () {
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => ProductPage(productModel: product,)),
+          MaterialPageRoute(
+              builder: (context) => ProductPage(
+                    productModel: product,
+                  )),
         );
       },
       child: Container(
@@ -106,22 +119,24 @@ class _CategorizedPageState extends State<CategorizedPage> {
                     ],
                     borderRadius: BorderRadius.only(
                         topRight: Radius.circular(10),
-                        bottomRight: Radius.circular(10)
-                    ),
+                        bottomRight: Radius.circular(10)),
                     color: white),
                 margin: EdgeInsets.symmetric(vertical: 5),
-                padding: EdgeInsets.symmetric(vertical: 10,horizontal: 10),
+                padding: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
                       '${product.name}',
-                      style: TextStyle(fontWeight: FontWeight.w500, fontSize: 16),
+                      style:
+                          TextStyle(fontWeight: FontWeight.w500, fontSize: 16),
                     ),
                     // SizedBox(height: 10,),
-                    Expanded(child: Container(),),
+                    Expanded(
+                      child: Container(),
+                    ),
                     Text(
-                      '${product.price} ${currentUser.country=='th'?'THB':'Ks'}',
+                      '${product.price} ${currentUser.country == 'th' ? 'THB' : 'Ks'}',
                       style: TextStyle(color: Colors.green, fontSize: 14),
                     )
                   ],
@@ -140,7 +155,8 @@ class _CategorizedPageState extends State<CategorizedPage> {
     print(_isLoadMore);
     if (_isLoadMore) {
       print('loading');
-      Provider.of<HomeProvider>(context, listen: false).getCategorizedProducts(widget.id);
+      Provider.of<HomeProvider>(context, listen: false)
+          .getCategorizedProducts(widget.id);
     }
   }
 }

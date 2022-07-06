@@ -17,22 +17,23 @@ class _BrandPageState extends State<BrandPage> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    Provider.of<HomeProvider>(context, listen: false).getCategories();
+    Provider.of<HomeProvider>(context, listen: false).getBrands();
   }
 
   @override
   Widget build(BuildContext context) {
-    List<Category> categoryList = context.watch<HomeProvider>().categories;
+    List<Category> categoryOnlyList = context.watch<HomeProvider>().categoryonly;
+    List<Category> brandOnlyList = context.watch<HomeProvider>().brandOnly;
 
     return MaterialApp(
       home: DefaultTabController(
         length: 2,
         child: Scaffold(
           appBar: AppBar(
-            leading: IconButton(
-              icon: Icon(Icons.arrow_back, color: Colors.white),
-              onPressed: () => Navigator.of(context).pop(),
-            ),
+            // leading: IconButton(
+            //   icon: Icon(Icons.arrow_back, color: Colors.white),
+            //   onPressed: () => Navigator.of(context).pop(),
+            // ),
             backgroundColor: pink,
             bottom: const TabBar(
               labelPadding: EdgeInsets.only(bottom: 20),
@@ -51,8 +52,8 @@ class _BrandPageState extends State<BrandPage> {
           ),
           body: TabBarView(
             children: [
-              Icon(Icons.directions_car),
-              buildBrandList(categoryList),
+              buildBrandList(categoryOnlyList,context),
+              buildBrandList(brandOnlyList,context),
             ],
           ),
         ),
@@ -60,62 +61,64 @@ class _BrandPageState extends State<BrandPage> {
     );
   }
 
-  ListView buildBrandList(List<Category> categoryList) {
-    return ListView.builder(
-      itemCount: categoryList.length,
-      addAutomaticKeepAlives: true,
-      cacheExtent: double.infinity,
-      itemBuilder: (context, index) {
-        return GestureDetector(
-          onTap: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => CategorizedPage(
-                  id: categoryList[index].id,
-                  name: categoryList[index].name,
-                ),
-              ),
-            );
-          },
-          child: Container(
-            margin: EdgeInsets.symmetric(vertical: 5, horizontal: 10),
-            padding: EdgeInsets.symmetric(horizontal: 10, vertical: 15),
-            decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.circular(7),
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.grey.withOpacity(0.2),
-                  spreadRadius: 3,
-                  blurRadius: 5,
-                  offset: Offset(0, 3), // changes position of shadow
-                ),
-              ],
-            ),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                ClipRRect(
-                  borderRadius: BorderRadius.circular(7),
-                  child: Container(
-                    width: 60,
-                    height: 60,
-                    child: Image(
-                      image: NetworkImage(
-                          "http://3.137.111.216/uploads/${categoryList[index].image}"),
-                      fit: BoxFit.cover,
-                    ),
+  Container buildBrandList(List<Category> categoryList,BuildContext context) {
+    return Container(
+      child: ListView.builder(
+        itemCount: categoryList.length,
+        addAutomaticKeepAlives: true,
+        cacheExtent: double.infinity,
+        itemBuilder: (context, index) {
+          return GestureDetector(
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => CategorizedPage(
+                    id: categoryList[index].id,
+                    name: categoryList[index].name,
                   ),
                 ),
-                Text('${categoryList[index].name}'),
-                // Text('${orders[index].order_items[0].product_name}'),
-                Icon(Icons.arrow_forward_ios)
-              ],
+              );
+            },
+            child: Container(
+              margin: EdgeInsets.symmetric(vertical: 5, horizontal: 10),
+              padding: EdgeInsets.symmetric(horizontal: 10, vertical: 15),
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(7),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.grey.withOpacity(0.2),
+                    spreadRadius: 3,
+                    blurRadius: 5,
+                    offset: Offset(0, 3), // changes position of shadow
+                  ),
+                ],
+              ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  ClipRRect(
+                    borderRadius: BorderRadius.circular(7),
+                    child: Container(
+                      width: 60,
+                      height: 60,
+                      child: Image(
+                        image: NetworkImage(
+                            "http://3.137.111.216/uploads/${categoryList[index].image}"),
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+                  ),
+                  Text('${categoryList[index].name}'),
+                  // Text('${orders[index].order_items[0].product_name}'),
+                  Icon(Icons.arrow_forward_ios)
+                ],
+              ),
             ),
-          ),
-        );
-      },
+          );
+        },
+      ),
     );
   }
 }

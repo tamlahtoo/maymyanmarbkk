@@ -7,6 +7,8 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 class HomeProvider with ChangeNotifier{
   List<Category> _categories =[];
+  List<Category> _categoryonly =[];
+  List<Category> _brandOnly =[];
   List<Product> _products = [];
   int pageNumber = 0;
   bool _isLoadMore = true;
@@ -16,6 +18,8 @@ class HomeProvider with ChangeNotifier{
   bool _isCatLoadMore = true;
 
   List<Category> get categories => _categories;
+  List<Category> get categoryonly => _categoryonly;
+  List<Category> get brandOnly => _brandOnly;
   List<Product> get products => _products;
   bool get isLoadMore => _isLoadMore;
   List<BannerEntity> get bannerList => _bannerList;
@@ -72,7 +76,15 @@ class HomeProvider with ChangeNotifier{
   getCategories() async {
     final prefs = await SharedPreferences.getInstance();
     final String? token = prefs.getString('token');
-    _categories = await getCategoriesService(token!);
+    _categories = await getCategoriesService(token!,'');
+    notifyListeners();
+  }
+
+  getBrands() async {
+    final prefs = await SharedPreferences.getInstance();
+    final String? token = prefs.getString('token');
+    _categoryonly = await getCategoriesService(token!,'category');
+    _brandOnly = await getCategoriesService(token!,'brand');
     notifyListeners();
   }
 

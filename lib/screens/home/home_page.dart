@@ -249,7 +249,7 @@ class _HomePageState extends State<HomePage> {
           height: 160,
           // margin: EdgeInsets.symmetric( vertical: 10),
           child: ListView.builder(
-            itemCount: 5, //categoryList.length,
+            itemCount: categoryList.length,
             scrollDirection: Axis.horizontal,
             itemBuilder: (context, index) {
               return Padding(
