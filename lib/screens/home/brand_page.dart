@@ -30,10 +30,10 @@ class _BrandPageState extends State<BrandPage> {
         length: 2,
         child: Scaffold(
           appBar: AppBar(
-            // leading: IconButton(
-            //   icon: Icon(Icons.arrow_back, color: Colors.white),
-            //   onPressed: () => Navigator.of(context).pop(),
-            // ),
+            leading: IconButton(
+              icon: Icon(Icons.arrow_back, color: Colors.white),
+              onPressed: () => Navigator.of(context).pop(),
+            ),
             backgroundColor: pink,
             bottom: const TabBar(
               labelPadding: EdgeInsets.only(bottom: 20),

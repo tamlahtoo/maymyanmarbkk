@@ -46,6 +46,7 @@ signupUser(
     'country': country
   });
   if (response.statusCode == 200) {
+    print('yoee');
     var data = jsonDecode(response.body.toString());
     ///check the status
     if (data['status'] == 'success') {
@@ -66,6 +67,7 @@ signupUser(
           fontSize: 16.0);
     }
   } else {
+    print('error');
     print(response.statusCode);
     return false;
     throw Exception('Failed to Login');

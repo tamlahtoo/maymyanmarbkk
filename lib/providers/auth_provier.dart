@@ -13,11 +13,13 @@ class AuthProvider with ChangeNotifier{
   bool _showSignIn = true;
   bool _loading = true;
   User _currentUser = User(id: 0, name: '', email: '', country: 'th', deliveryCostGrab: 0);
+  bool _verify = false;
 
   bool get isAuth => _isAuth;
   bool get showSignIn => _showSignIn;
   bool get loading => _loading;
   User get currentUser => _currentUser;
+  bool get verify => _verify;
 
   checkSignin()async {
     final prefs = await SharedPreferences.getInstance();
@@ -29,6 +31,36 @@ class AuthProvider with ChangeNotifier{
     }else{
       _loading = false;
       notifyListeners();
+    }
+  }
+
+  checkVerification()async{
+    final prefs = await SharedPreferences.getInstance();
+    final String? token = prefs.getString('token');
+    final response = await http.post(Uri.parse(baseUrl + "user/check-approve?token=$token"),);
+    if (response.statusCode == 200) {
+      var data = jsonDecode(response.body.toString());
+      ///check the status
+      if (data['status'] =="succes") {
+        if(data['admin_approved']==1){
+          _verify = true;
+        }else{
+          _verify = false;
+        }
+        notifyListeners();
+      } else  {
+        Fluttertoast.showToast(
+            msg: "${data['message']}",
+            toastLength: Toast.LENGTH_SHORT,
+            gravity: ToastGravity.TOP,
+            timeInSecForIosWeb: 1,
+            backgroundColor: Colors.red,
+            textColor: Colors.white,
+            fontSize: 16.0);
+      }
+    } else {
+      return false;
+      throw Exception('Failed to Login');
     }
   }
 

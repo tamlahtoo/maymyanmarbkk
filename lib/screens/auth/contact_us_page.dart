@@ -154,7 +154,7 @@ class _ContactUsPageState extends State<ContactUsPage> {
                 GestureDetector(
                   onTap: () async {
                     var url =
-                        'fb://facewebmodal/f?href=https://www.facebook.com/May-Myanmar-BKK-102418054864860/';
+                        'https://m.me/MayMyanmarBKK';
                     if (await canLaunch(url)) {
                       await launch(
                         url,

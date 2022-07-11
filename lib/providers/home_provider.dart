@@ -83,9 +83,8 @@ class HomeProvider with ChangeNotifier{
   getBrands() async {
     final prefs = await SharedPreferences.getInstance();
     final String? token = prefs.getString('token');
-    _categoryonly = await getCategoriesService(token!,'category');
-    _brandOnly = await getCategoriesService(token!,'brand');
+    _categoryonly = await getCategoriesService('$token','category');
+    _brandOnly = await getCategoriesService('$token','brand');
     notifyListeners();
   }
-
 }

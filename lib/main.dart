@@ -13,6 +13,7 @@ import 'package:maymyanmar/screens/auth/auth_page.dart';
 import 'package:maymyanmar/screens/auth/signin_page.dart';
 import 'package:maymyanmar/screens/auth/signup_page.dart';
 import 'package:maymyanmar/screens/main_screen.dart';
+import 'package:maymyanmar/verify_page.dart';
 import 'package:maymyanmar/widgets/loading_widget.dart';
 import 'package:provider/provider.dart';
 
@@ -68,7 +69,7 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
           primarySwatch: Colors.blue,
         ),
-        home: isAuth ? MainScreen() : AuthPage(), // MainScreen(),
+        home: isAuth ? VerifyPage() : AuthPage(), // MainScreen(),
       );
     }
   }
