@@ -11,7 +11,9 @@ addCart(int productID, int quantity) async {
   final prefs = await SharedPreferences.getInstance();
   final String? token = prefs.getString('token');
   final response = await http.post(Uri.parse(baseUrl + "carts?token=$token&product_id=$productID&quantity=$quantity"));
+  print('productID$productID');
   if (response.statusCode == 200) {
+    print("hi");
     var data = jsonDecode(response.body.toString());
     ///check the status
     if (data['status'] == 'success') {
@@ -35,6 +37,8 @@ addCart(int productID, int quantity) async {
           fontSize: 16.0);
     }
   } else {
+    print("girl${response.statusCode}");
+    print("girl${response.body}");
     return false;
     throw Exception('Failed to Login');
   }

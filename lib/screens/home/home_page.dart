@@ -157,13 +157,19 @@ class _HomePageState extends State<HomePage> {
             Container(
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(10),
-                child: Image(
+                child: CachedNetworkImage(
+                  imageUrl: "https://api.maymyanmar-bbk.com/uploads/${product.image}",
                   width: MediaQuery.of(context).size.width / 2.5,
                   height: 130,
-                  image: NetworkImage(
-                      "http://3.137.111.216/uploads/${product.image}"),
                   fit: BoxFit.fitHeight,
                 ),
+                // child: Image(
+                //   width: MediaQuery.of(context).size.width / 2.5,
+                //   height: 130,
+                //   image: NetworkImage(
+                //       "https://api.maymyanmar-bbk.com/uploads/${product.image}"),
+                //   fit: BoxFit.fitHeight,
+                // ),
               ),
             ),
             Expanded(
@@ -215,9 +221,9 @@ class _HomePageState extends State<HomePage> {
         margin: EdgeInsets.symmetric(vertical: 10),
         child: CustomSliderWidget(
           items: [
-            "http://3.137.111.216/uploads/" + bannerList[0].image_name,
-            "http://3.137.111.216/uploads/" + bannerList[1].image_name,
-            "http://3.137.111.216/uploads/" + bannerList[2].image_name,
+            "https://api.maymyanmar-bbk.com/uploads/" + bannerList[0].image_name,
+            "https://api.maymyanmar-bbk.com/uploads/" + bannerList[1].image_name,
+            "https://api.maymyanmar-bbk.com/uploads/" + bannerList[2].image_name,
           ],
         ),
       );
@@ -285,11 +291,15 @@ class _HomePageState extends State<HomePage> {
                         ),
                         child: ClipRRect(
                           borderRadius: BorderRadius.circular(7),
-                          child: Image(
-                            image: NetworkImage(
-                                "http://3.137.111.216/uploads/${categoryList[index].image}"),
+                          child: CachedNetworkImage(
+                            imageUrl: "https://api.maymyanmar-bbk.com/uploads/${categoryList[index].image}",
                             fit: BoxFit.cover,
                           ),
+                          // child: Image(
+                          //   image: NetworkImage(
+                          //       "https://api.maymyanmar-bbk.com/uploads/${categoryList[index].image}"),
+                          //   fit: BoxFit.cover,
+                          // ),
                         ),
                       ),
                     ),

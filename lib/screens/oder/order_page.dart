@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:maymyanmar/models/order_model.dart';
 import 'package:maymyanmar/models/user.dart';
@@ -12,7 +13,6 @@ class OrderPage extends StatefulWidget {
 }
 
 class _OrderPageState extends State<OrderPage> {
-
   @override
   void initState() {
     // TODO: implement initState
@@ -77,28 +77,33 @@ class _OrderPageState extends State<OrderPage> {
                                 ClipRRect(
                                   borderRadius: BorderRadius.circular(5),
                                   child: Image(
-                                    width: MediaQuery.of(context).size.width / 3,
+                                    width:
+                                        MediaQuery.of(context).size.width / 4,
                                     height: 70,
                                     image: NetworkImage(
-                                        "http://3.137.111.216/uploads/${item.product_image}"),
+                                        "https://api.maymyanmar-bbk.com/uploads/${item.product_image}"),
                                     fit: BoxFit.fitHeight,
                                   ),
                                 ),
-                                SizedBox(
-                                  width: 20,
-                                ),
+                                // SizedBox(
+                                //   width: 20,
+                                // ),
                                 Column(
                                   children: [
-                                    Text(
-                                      '${item.product_name}',
-                                      style: TextStyle(
-                                          fontSize: 16,
-                                          fontWeight: FontWeight.bold),
+                                    Container(
+                                      width: MediaQuery.of(context).size.width / 2,
+                                      child: Text(
+                                        '${item.product_name}',
+                                        maxLines: 2,
+                                        style: TextStyle(
+                                            fontSize: 14,
+                                            fontWeight: FontWeight.bold),
+                                      ),
                                     ),
                                     Text('Quanity: ${item.product_quantity}'),
                                   ],
                                 ),
-                                Expanded(child: Container()),
+                                Expanded(child: Container(),),
                                 Text(
                                   '${item.product_price}${currentUser.country == 'th' ? 'THB' : 'Ks'}',
                                   style: TextStyle(
@@ -106,13 +111,19 @@ class _OrderPageState extends State<OrderPage> {
                                     fontSize: 16,
                                   ),
                                 ),
+
                               ],
                             ));
                       }).toList(),
                     ],
                   ),
-                  Container(height: 1,color: Colors.grey,),
-                  SizedBox(height: 5,),
+                  Container(
+                    height: 1,
+                    color: Colors.grey,
+                  ),
+                  SizedBox(
+                    height: 5,
+                  ),
                   Row(
                     children: [
                       Expanded(child: Container()),
@@ -169,7 +180,7 @@ class PendingStatus extends StatelessWidget {
           style: TextStyle(color: Colors.white),
         ),
       );
-    }else if(pending_status==1){
+    } else if (pending_status == 1) {
       return Container(
         padding: EdgeInsets.symmetric(horizontal: 10, vertical: 3),
         decoration: BoxDecoration(
@@ -179,7 +190,7 @@ class PendingStatus extends StatelessWidget {
           style: TextStyle(color: Colors.white),
         ),
       );
-    }else if(pending_status==2){
+    } else if (pending_status == 2) {
       return Container(
         padding: EdgeInsets.symmetric(horizontal: 10, vertical: 3),
         decoration: BoxDecoration(
@@ -189,7 +200,7 @@ class PendingStatus extends StatelessWidget {
           style: TextStyle(color: Colors.white),
         ),
       );
-    }else if(pending_status==3){
+    } else if (pending_status == 3) {
       return Container(
         padding: EdgeInsets.symmetric(horizontal: 10, vertical: 3),
         decoration: BoxDecoration(

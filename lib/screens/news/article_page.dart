@@ -21,7 +21,7 @@ class _ArticlePageState extends State<ArticlePage> {
             ListView(
               children: [
                 Image.network(
-                    "http://3.137.111.216/uploads/${widget.articleModel.image}"),
+                    "https://api.maymyanmar-bbk.com/uploads/${widget.articleModel.image}"),
                 Container(
                   padding: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
                   child: Column(

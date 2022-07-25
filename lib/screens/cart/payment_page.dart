@@ -23,7 +23,7 @@ class _PaymentPageState extends State<PaymentPage> {
     'Cash on Delivery',
     'Bank Payment',
   ];
-  String dropdownvalue = 'Cash on Delivery';
+  String dropdownvalue = 'Bank Payment';
   File _image = File('');
   @override
   Widget build(BuildContext context) {
@@ -40,35 +40,37 @@ class _PaymentPageState extends State<PaymentPage> {
           SizedBox(
             height: 20,
           ),
-          Row(
-            children: [
-              Text('Payment Method'),
-              Expanded(child: Container()),
-              DropdownButton(
-                // Initial Value
-                value: dropdownvalue,
+          widget.deliveryMethod == 0
+              ? Container()
+              : Row(
+                  children: [
+                    Text('Payment Method'),
+                    Expanded(child: Container()),
+                    DropdownButton(
+                      // Initial Value
+                      value: dropdownvalue,
 
-                // Down Arrow Icon
-                icon: const Icon(Icons.keyboard_arrow_down),
+                      // Down Arrow Icon
+                      icon: const Icon(Icons.keyboard_arrow_down),
 
-                // Array list of items
-                items: items.map((String items) {
-                  return DropdownMenuItem(
-                    value: items,
-                    child: Text(items),
-                  );
-                }).toList(),
-                // After selecting the desired option,it will
-                // change button value to selected value
-                onChanged: (String? newValue) {
-                  setState(() {
-                    dropdownvalue = newValue!;
-                    // getDeliCost();
-                  });
-                },
-              ),
-            ],
-          ),
+                      // Array list of items
+                      items: items.map((String items) {
+                        return DropdownMenuItem(
+                          value: items,
+                          child: Text(items),
+                        );
+                      }).toList(),
+                      // After selecting the desired option,it will
+                      // change button value to selected value
+                      onChanged: (String? newValue) {
+                        setState(() {
+                          dropdownvalue = newValue!;
+                          // getDeliCost();
+                        });
+                      },
+                    ),
+                  ],
+                ),
           SizedBox(
             height: 20,
           ),
@@ -82,9 +84,8 @@ class _PaymentPageState extends State<PaymentPage> {
                             _getImage();
                           },
                           child: Container(
-                            decoration: BoxDecoration(
-                                border: Border.all(color: Colors.blueAccent)
-                            ),
+                              decoration: BoxDecoration(
+                                  border: Border.all(color: Colors.blueAccent)),
                               // height: 50,
                               // width: 100,
                               child: Column(
@@ -92,7 +93,9 @@ class _PaymentPageState extends State<PaymentPage> {
                                 children: [
                                   Expanded(child: Container()),
                                   Icon(Icons.add_to_photos),
-                                  SizedBox(height: 10,),
+                                  SizedBox(
+                                    height: 10,
+                                  ),
                                   Text(
                                     'Upload Bank Slip',
                                     style: TextStyle(
@@ -117,200 +120,212 @@ class _PaymentPageState extends State<PaymentPage> {
           //     await Provider.of<CartProvider>(context, listen: false).placeOrder(1,_image);
           //   },
           // )
-          SizedBox(height: 10,),
-          dropdownvalue == 'Cash on Delivery'?Container():Column(
-            children: [
-              // Text('Send money to following account and upload the slip.',textAlign: TextAlign.center,),
-              Container(
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10),
-                  color: Colors.white,
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.grey.withOpacity(0.2),
-                      spreadRadius: 1,
-                      blurRadius: 2,
-                      offset: Offset(0, 3), // changes position of shadow
-                    ),
-                  ],
-                ),
-                margin: EdgeInsets.symmetric( vertical: 10),
-                padding: EdgeInsets.symmetric(vertical: 10),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+          SizedBox(
+            height: 10,
+          ),
+          dropdownvalue == 'Cash on Delivery'
+              ? Container()
+              : Column(
                   children: [
-                    Text(
-                      '   Thailand',
-                      style: TextStyle(color: Colors.black87,fontSize: 16),
-                    ),
+                    // Text('Send money to following account and upload the slip.',textAlign: TextAlign.center,),
                     Container(
-                      padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          // Icon(
-                          //   Icons.send,
-                          //   color: Colors.black87,
-                          // ),
-                          // SizedBox(
-                          //   width: 15,
-                          // ),
-                          Text(
-                            'Bank Account',
-                            style: TextStyle(color: Colors.black54),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10),
+                        color: Colors.white,
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.grey.withOpacity(0.2),
+                            spreadRadius: 1,
+                            blurRadius: 2,
+                            offset: Offset(0, 3), // changes position of shadow
                           ),
+                        ],
+                      ),
+                      margin: EdgeInsets.symmetric(vertical: 10),
+                      padding: EdgeInsets.symmetric(vertical: 10),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
                           Text(
-                            '0471189693',
-                            style: TextStyle(color: Colors.black87),
-                          )
+                            '   Thailand',
+                            style:
+                                TextStyle(color: Colors.black87, fontSize: 16),
+                          ),
+                          Container(
+                            padding: EdgeInsets.symmetric(
+                                horizontal: 10, vertical: 10),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                // Icon(
+                                //   Icons.send,
+                                //   color: Colors.black87,
+                                // ),
+                                // SizedBox(
+                                //   width: 15,
+                                // ),
+                                Text(
+                                  'Bank Account',
+                                  style: TextStyle(color: Colors.black54),
+                                ),
+                                Text(
+                                  '0471189693',
+                                  style: TextStyle(color: Colors.black87),
+                                )
+                              ],
+                            ),
+                          ),
+                          Container(
+                            padding: EdgeInsets.symmetric(
+                                horizontal: 10, vertical: 10),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                // Icon(
+                                //   Icons.send,
+                                //   color: Colors.black87,
+                                // ),
+                                // SizedBox(
+                                //   width: 15,
+                                // ),
+                                Text(
+                                  'Name',
+                                  style: TextStyle(color: Colors.black54),
+                                ),
+                                Text(
+                                  'Mr. Zaw Htwe',
+                                  style: TextStyle(color: Colors.black87),
+                                )
+                              ],
+                            ),
+                          ),
+                          Container(
+                            padding: EdgeInsets.symmetric(
+                                horizontal: 10, vertical: 10),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                // Icon(
+                                //   Icons.send,
+                                //   color: Colors.black87,
+                                // ),
+                                // SizedBox(
+                                //   width: 15,
+                                // ),
+                                Text(
+                                  'Bank Name',
+                                  style: TextStyle(color: Colors.black54),
+                                ),
+                                Text(
+                                  'Kasikorn Bank',
+                                  style: TextStyle(color: Colors.black87),
+                                )
+                              ],
+                            ),
+                          ),
                         ],
                       ),
                     ),
                     Container(
-                      padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          // Icon(
-                          //   Icons.send,
-                          //   color: Colors.black87,
-                          // ),
-                          // SizedBox(
-                          //   width: 15,
-                          // ),
-                          Text(
-                            'Name',
-                            style: TextStyle(color: Colors.black54),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10),
+                        color: Colors.white,
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.grey.withOpacity(0.2),
+                            spreadRadius: 1,
+                            blurRadius: 2,
+                            offset: Offset(0, 3), // changes position of shadow
                           ),
-                          Text(
-                            'Mr. Zaw Htwe',
-                            style: TextStyle(color: Colors.black87),
-                          )
                         ],
                       ),
-                    ),
-                    Container(
-                      padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      margin: EdgeInsets.symmetric(vertical: 10),
+                      padding: EdgeInsets.symmetric(vertical: 10),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          // Icon(
-                          //   Icons.send,
-                          //   color: Colors.black87,
-                          // ),
-                          // SizedBox(
-                          //   width: 15,
-                          // ),
                           Text(
-                            'Bank Name',
-                            style: TextStyle(color: Colors.black54),
+                            '   Myanmar',
+                            style:
+                                TextStyle(color: Colors.black87, fontSize: 16),
                           ),
-                          Text(
-                            'Kasikorn Bank',
-                            style: TextStyle(color: Colors.black87),
-                          )
+                          Container(
+                            padding: EdgeInsets.symmetric(
+                                horizontal: 10, vertical: 10),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                // Icon(
+                                //   Icons.send,
+                                //   color: Colors.black87,
+                                // ),
+                                // SizedBox(
+                                //   width: 15,
+                                // ),
+                                Text(
+                                  'Bank Account',
+                                  style: TextStyle(color: Colors.black54),
+                                ),
+                                Text(
+                                  '20003423150',
+                                  style: TextStyle(color: Colors.black87),
+                                )
+                              ],
+                            ),
+                          ),
+                          Container(
+                            padding: EdgeInsets.symmetric(
+                                horizontal: 10, vertical: 10),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                // Icon(
+                                //   Icons.send,
+                                //   color: Colors.black87,
+                                // ),
+                                // SizedBox(
+                                //   width: 15,
+                                // ),
+                                Text(
+                                  'Name',
+                                  style: TextStyle(color: Colors.black54),
+                                ),
+                                Text(
+                                  'Su Su Hlaing',
+                                  style: TextStyle(color: Colors.black87),
+                                )
+                              ],
+                            ),
+                          ),
+                          Container(
+                            padding: EdgeInsets.symmetric(
+                                horizontal: 10, vertical: 10),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                // Icon(
+                                //   Icons.send,
+                                //   color: Colors.black87,
+                                // ),
+                                // SizedBox(
+                                //   width: 15,
+                                // ),
+                                Text(
+                                  'Bank Name',
+                                  style: TextStyle(color: Colors.black54),
+                                ),
+                                Text(
+                                  'Aya Bank',
+                                  style: TextStyle(color: Colors.black87),
+                                )
+                              ],
+                            ),
+                          ),
                         ],
                       ),
                     ),
                   ],
-                ),
-              ),
-              Container(
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10),
-                  color: Colors.white,
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.grey.withOpacity(0.2),
-                      spreadRadius: 1,
-                      blurRadius: 2,
-                      offset: Offset(0, 3), // changes position of shadow
-                    ),
-                  ],
-                ),
-                margin: EdgeInsets.symmetric( vertical: 10),
-                padding: EdgeInsets.symmetric(vertical: 10),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      '   Myanmar',
-                      style: TextStyle(color: Colors.black87,fontSize: 16),
-                    ),
-                    Container(
-                      padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          // Icon(
-                          //   Icons.send,
-                          //   color: Colors.black87,
-                          // ),
-                          // SizedBox(
-                          //   width: 15,
-                          // ),
-                          Text(
-                            'Bank Account',
-                            style: TextStyle(color: Colors.black54),
-                          ),
-                          Text(
-                            '20003423150',
-                            style: TextStyle(color: Colors.black87),
-                          )
-                        ],
-                      ),
-                    ),
-                    Container(
-                      padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          // Icon(
-                          //   Icons.send,
-                          //   color: Colors.black87,
-                          // ),
-                          // SizedBox(
-                          //   width: 15,
-                          // ),
-                          Text(
-                            'Name',
-                            style: TextStyle(color: Colors.black54),
-                          ),
-                          Text(
-                            'Su Su Hlaing',
-                            style: TextStyle(color: Colors.black87),
-                          )
-                        ],
-                      ),
-                    ),
-                    Container(
-                      padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          // Icon(
-                          //   Icons.send,
-                          //   color: Colors.black87,
-                          // ),
-                          // SizedBox(
-                          //   width: 15,
-                          // ),
-                          Text(
-                            'Bank Name',
-                            style: TextStyle(color: Colors.black54),
-                          ),
-                          Text(
-                            'Aya Bank',
-                            style: TextStyle(color: Colors.black87),
-                          )
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ],
-          )
+                )
         ],
       ),
       bottomNavigationBar: Container(
@@ -360,16 +375,18 @@ class _PaymentPageState extends State<PaymentPage> {
                   if (dropdownvalue == 'Cash on Delivery') {
                     _image = File('');
                     await Provider.of<CartProvider>(context, listen: false)
-                        .placeOrder(0, _image,widget.deliveryMethod);
-                    await Provider.of<OrderProvider>(context, listen: false).getOrders();
+                        .placeOrder(0, _image, widget.deliveryMethod);
+                    await Provider.of<OrderProvider>(context, listen: false)
+                        .getOrders();
                     Navigator.of(context).pushAndRemoveUntil(
                         MaterialPageRoute(builder: (context) => MyApp()),
                         (Route<dynamic> route) => false);
                   } else if (dropdownvalue == 'Bank Payment' &&
                       _image.path != '') {
                     await Provider.of<CartProvider>(context, listen: false)
-                        .placeOrder(1, _image,widget.deliveryMethod);
-                    await Provider.of<OrderProvider>(context, listen: false).getOrders();
+                        .placeOrder(1, _image, widget.deliveryMethod);
+                    await Provider.of<OrderProvider>(context, listen: false)
+                        .getOrders();
                     Navigator.of(context).pushAndRemoveUntil(
                         MaterialPageRoute(builder: (context) => MyApp()),
                         (Route<dynamic> route) => false);

@@ -100,7 +100,7 @@ class _CategorizedPageState extends State<CategorizedPage> {
                   width: MediaQuery.of(context).size.width / 2.5,
                   height: 130,
                   image: NetworkImage(
-                      "http://3.137.111.216/uploads/${product.image}"),
+                      "https://api.maymyanmar-bbk.com/uploads/${product.image}"),
                   fit: BoxFit.fitHeight,
                 ),
               ),

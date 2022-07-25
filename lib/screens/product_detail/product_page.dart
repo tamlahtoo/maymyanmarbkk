@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:maymyanmar/models/product_model.dart';
@@ -26,8 +27,9 @@ class _ProductPageState extends State<ProductPage> {
           children: <Widget>[
             ListView(
               children: [
-                Image.network(
-                    "http://3.137.111.216/uploads/${widget.productModel.image}"),
+                CachedNetworkImage(imageUrl: "https://api.maymyanmar-bbk.com/uploads/${widget.productModel.image}"),
+                // Image.network(
+                //     "https://api.maymyanmar-bbk.com/uploads/${widget.productModel.image}"),
                 Container(
                   padding: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
                   child: Column(
@@ -144,6 +146,7 @@ class _ProductPageState extends State<ProductPage> {
         padding: EdgeInsets.symmetric(vertical: 10, horizontal: 40),
         child: GestureDetector(
           onTap: ()async{
+            print("hi");
             await addCart(widget.productModel.id,1);
           },
           child: Container(

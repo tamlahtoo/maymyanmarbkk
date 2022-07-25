@@ -105,12 +105,12 @@ class _BrandPageState extends State<BrandPage> {
                       height: 60,
                       child: Image(
                         image: NetworkImage(
-                            "http://3.137.111.216/uploads/${categoryList[index].image}"),
+                            "https://api.maymyanmar-bbk.com/uploads/${categoryList[index].image}"),
                         fit: BoxFit.cover,
                       ),
                     ),
                   ),
-                  Text('${categoryList[index].name}'),
+                  Flexible(child: Text('${categoryList[index].name}',overflow: TextOverflow.ellipsis,)),
                   // Text('${orders[index].order_items[0].product_name}'),
                   Icon(Icons.arrow_forward_ios)
                 ],

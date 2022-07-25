@@ -3,14 +3,11 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:maymyanmar/models/article_model.dart';
-import 'package:maymyanmar/models/product_model.dart';
-import 'package:maymyanmar/providers/home_provider.dart';
 import 'package:maymyanmar/providers/news_provider.dart';
-import 'package:maymyanmar/providers/search_provider.dart';
 import 'package:maymyanmar/screens/news/article_page.dart';
-import 'package:maymyanmar/screens/product_detail/product_page.dart';
 import 'package:maymyanmar/theme/app_colors.dart';
 import 'package:provider/provider.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 
 class NewsPage extends StatefulWidget {
 
@@ -87,12 +84,15 @@ class _NewsPageState extends State<NewsPage> {
             Container(
               child: ClipRRect(
                 borderRadius: BorderRadius.only(topRight:  Radius.circular(10),topLeft: Radius.circular(10)),
-                child: Image(
-                  width: MediaQuery.of(context).size.width ,
-                  image: NetworkImage(
-                      "http://3.137.111.216/uploads/${article.image}"),
-                  fit: BoxFit.fitWidth,
-                ),
+                child: CachedNetworkImage(
+                  imageUrl: "https://api.maymyanmar-bbk.com/uploads/${article.image}",
+                )
+                // child: Image(
+                //   width: MediaQuery.of(context).size.width ,
+                //   image: NetworkImage(
+                //       "https://api.maymyanmar-bbk.com/uploads/${article.image}"),
+                //   fit: BoxFit.fitWidth,
+                // ),
               ),
             ),
             Container(
