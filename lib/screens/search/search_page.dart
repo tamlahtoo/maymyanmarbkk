@@ -89,7 +89,7 @@ class _SearchPageState extends State<SearchPage> {
                   width: MediaQuery.of(context).size.width / 2.5,
                   height: 130,
                   image: NetworkImage(
-                      "http://3.137.111.216/uploads/${product.image}"),
+                      "https://api.maymyanmar-bbk.com/uploads/${product.image}"),
                   fit: BoxFit.fitHeight,
                 ),
               ),
@@ -118,7 +118,7 @@ class _SearchPageState extends State<SearchPage> {
                   children: [
                     Text(
                       '${product.name}',
-                      style: TextStyle(fontWeight: FontWeight.w500, fontSize: 16),
+                      style: TextStyle(fontWeight: FontWeight.w500, fontSize: 14),
                     ),
                     SizedBox(height: 10,),
                     Text(

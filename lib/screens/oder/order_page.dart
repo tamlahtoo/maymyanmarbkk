@@ -91,7 +91,7 @@ class _OrderPageState extends State<OrderPage> {
                                 Column(
                                   children: [
                                     Container(
-                                      width: MediaQuery.of(context).size.width / 2,
+                                      width: MediaQuery.of(context).size.width / 2.5,
                                       child: Text(
                                         '${item.product_name}',
                                         maxLines: 2,

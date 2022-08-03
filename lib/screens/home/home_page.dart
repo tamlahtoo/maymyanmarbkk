@@ -69,10 +69,11 @@ class _HomePageState extends State<HomePage> {
       child: Scaffold(
         backgroundColor: bgColor,
         appBar: AppBar(
+          // centerTitle: true,
           backgroundColor: pink,
           title: Text(
-            'May Myannmar',
-            style: TextStyle(color: white),
+            '𝑀𝒶𝓎 𝑀𝓎𝒶𝓃𝓂𝒶𝓇',
+            style: TextStyle(color: white,fontSize: 23),
           ),
           actions: [
             GestureDetector(
@@ -225,6 +226,7 @@ class _HomePageState extends State<HomePage> {
             "https://api.maymyanmar-bbk.com/uploads/" + bannerList[1].image_name,
             "https://api.maymyanmar-bbk.com/uploads/" + bannerList[2].image_name,
           ],
+          autoPlay: true,
         ),
       );
     }

@@ -13,7 +13,7 @@ class AuthProvider with ChangeNotifier{
   bool _showSignIn = true;
   bool _loading = true;
   User _currentUser = User(id: 0, name: '', email: '', country: 'th', deliveryCostGrab: 0);
-  bool _verify = false;
+  bool _verify = true;
 
   bool get isAuth => _isAuth;
   bool get showSignIn => _showSignIn;

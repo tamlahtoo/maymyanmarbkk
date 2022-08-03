@@ -44,8 +44,9 @@ class InactiveDot extends StatelessWidget {
 class CustomSliderWidget extends StatefulWidget {
   // final List<String> items;
   final List items;
+  final bool autoPlay;
 
-  CustomSliderWidget({required this.items});
+  CustomSliderWidget({required this.items, required this.autoPlay});
 
   @override
   _CustomSliderWidgetState createState() => _CustomSliderWidgetState();
@@ -72,7 +73,7 @@ class _CustomSliderWidgetState extends State<CustomSliderWidget> {
                 setActiveDot(index);
               },
               enableInfiniteScroll: true,
-              autoPlay: true,
+              autoPlay: widget.autoPlay?true:false,
               autoPlayCurve: Curves.fastLinearToSlowEaseIn,
               autoPlayAnimationDuration: Duration(seconds: 4),
               // autoPlay: true,
@@ -83,15 +84,10 @@ class _CustomSliderWidgetState extends State<CustomSliderWidget> {
                 builder: (BuildContext context) {
                   return Stack(
                     children: <Widget>[
-                      Container(
+                      CachedNetworkImage(
+                        imageUrl: item,
                         width: MediaQuery.of(context).size.width,
-                        child: CachedNetworkImage(
-                          imageUrl: item,
-                        ),
-                        // child: Image(
-                        //   image: NetworkImage(item),
-                        //   fit: BoxFit.cover,
-                        // ),
+                        // fit: BoxFit.fitWidth,
                       ),
                     ],
                   );

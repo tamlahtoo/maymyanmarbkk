@@ -6,8 +6,8 @@ import 'package:maymyanmar/models/user.dart';
 import 'package:maymyanmar/providers/auth_provier.dart';
 import 'package:maymyanmar/services/cart_service.dart';
 import 'package:maymyanmar/theme/app_colors.dart';
+import 'package:maymyanmar/widgets/custom_slider.dart';
 import 'package:provider/provider.dart';
-
 
 class ProductPage extends StatefulWidget {
   final Product productModel;
@@ -27,7 +27,18 @@ class _ProductPageState extends State<ProductPage> {
           children: <Widget>[
             ListView(
               children: [
-                CachedNetworkImage(imageUrl: "https://api.maymyanmar-bbk.com/uploads/${widget.productModel.image}"),
+                // CachedNetworkImage(imageUrl: "https://api.maymyanmar-bbk.com/uploads/${widget.productModel.image}"),
+                CustomSliderWidget(
+                  items: [
+                    "https://api.maymyanmar-bbk.com/uploads/" +
+                        widget.productModel.image,
+                    "https://api.maymyanmar-bbk.com/uploads/" +
+                        widget.productModel.image1,
+                    "https://api.maymyanmar-bbk.com/uploads/" +
+                        widget.productModel.image2,
+                  ],
+                  autoPlay: false,
+                ),
                 // Image.network(
                 //     "https://api.maymyanmar-bbk.com/uploads/${widget.productModel.image}"),
                 Container(
@@ -42,12 +53,25 @@ class _ProductPageState extends State<ProductPage> {
                       SizedBox(
                         height: 5,
                       ),
-                      Text(
-                        '${widget.productModel.price} ${currentUser.country=='th'?'THB':'Ks'}',
-                        style: TextStyle(fontSize: 18, color: Colors.green),
+                      Row(
+                        children: [
+                          Text(
+                            '${widget.productModel.price} ${currentUser.country == 'th' ? 'THB' : 'Ks'}  ',
+                            style: TextStyle(fontSize: 24, color: Colors.green),
+                          ),
+
+                          ///discount panel
+                          widget.productModel.discount_amount != 0
+                              ? Text(
+                                  '(${widget.productModel.price - widget.productModel.discount_amount} ${currentUser.country == 'th' ? 'THB' : 'Ks'} for ${widget.productModel.min_number_of_product_for_discount} and more) ',
+                                  style: TextStyle(
+                                      fontSize: 14, color: Colors.green),
+                                )
+                              : Container(),
+                        ],
                       ),
                       SizedBox(
-                        height: 20,
+                        height: 40,
                       ),
                       Text(
                         'Availibility',
@@ -55,7 +79,9 @@ class _ProductPageState extends State<ProductPage> {
                             fontSize: 16, fontWeight: FontWeight.w500),
                       ),
                       Text(
-                        widget.productModel.inventoryQuantity==0?"Sold Out":'In stock',
+                        widget.productModel.inventoryQuantity == 0
+                            ? "Sold Out"
+                            : 'In stock',
                         style: TextStyle(fontSize: 14),
                       ),
                       SizedBox(
@@ -114,17 +140,21 @@ class _ProductPageState extends State<ProductPage> {
               ],
             ),
             GestureDetector(
-              onTap: (){
+              onTap: () {
                 Navigator.pop(context);
               },
               child: Container(
-                margin: EdgeInsets.symmetric(horizontal: 10,vertical: 10),
+                margin: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
                 width: 45,
                 height: 45,
-                child: Icon(Icons.arrow_back, size: 20,),
+                child: Icon(
+                  Icons.arrow_back,
+                  size: 20,
+                ),
                 decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    color: Colors.white.withOpacity(0.6),),
+                  shape: BoxShape.circle,
+                  color: Colors.white.withOpacity(0.6),
+                ),
               ),
             )
           ],
@@ -145,9 +175,9 @@ class _ProductPageState extends State<ProductPage> {
         height: 70,
         padding: EdgeInsets.symmetric(vertical: 10, horizontal: 40),
         child: GestureDetector(
-          onTap: ()async{
+          onTap: () async {
             print("hi");
-            await addCart(widget.productModel.id,1);
+            await addCart(widget.productModel.id, 1);
           },
           child: Container(
               decoration: BoxDecoration(

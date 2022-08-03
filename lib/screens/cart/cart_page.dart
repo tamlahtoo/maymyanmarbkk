@@ -83,78 +83,81 @@ class _CartPageState extends State<CartPage> {
                   ClipRRect(
                     borderRadius: BorderRadius.circular(5),
                     child: Image(
-                      width: MediaQuery.of(context).size.width / 3,
+                      width: MediaQuery.of(context).size.width / 4,
                       height: 100,
                       image: NetworkImage(
-                          "http://3.137.111.216/uploads/${cartItemList[index].product_image}"),
+                          "https://api.maymyanmar-bbk.com/uploads/${cartItemList[index].product_image}"),
                       fit: BoxFit.fitHeight,
                     ),
                   ),
                   SizedBox(
                     width: 10,
                   ),
-                  Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        '${cartItemList[index].product_name}',
-                        style: TextStyle(),
-                      ),
-                      Text(
-                        '${cartItemList[index].product_price} ${currentUser.country=='th'?'THB':'Ks'}',
-                        style: TextStyle(fontSize: 18, color: Colors.green),
-                      ),
-                      SizedBox(
-                        height: 15,
-                      ),
-                      Row(
-                        children: [
-                          GestureDetector(
-                            onTap: () {
-                              Provider.of<CartProvider>(context, listen: false)
-                                  .changeQuantity(
-                                      cartItemList[index].id, false);
-                            },
-                            child: Container(
-                              decoration: BoxDecoration(
-                                  shape: BoxShape.circle, color: Colors.blue),
-                              width: 35,
-                              height: 35,
+                  Container(
+                    width: MediaQuery.of(context).size.width / 2,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          '${cartItemList[index].product_name}',
+                          style: TextStyle(),
+                        ),
+                        Text(
+                          '${cartItemList[index].product_price} ${currentUser.country=='th'?'THB':'Ks'}',
+                          style: TextStyle(fontSize: 18, color: Colors.green),
+                        ),
+                        SizedBox(
+                          height: 15,
+                        ),
+                        Row(
+                          children: [
+                            GestureDetector(
+                              onTap: () {
+                                Provider.of<CartProvider>(context, listen: false)
+                                    .changeQuantity(
+                                        cartItemList[index].id, false);
+                              },
+                              child: Container(
+                                decoration: BoxDecoration(
+                                    shape: BoxShape.circle, color: Colors.blue),
+                                width: 35,
+                                height: 35,
+                                child: Center(
+                                  child: Text('-',style: TextStyle(color: white),),
+                                ),
+                              ),
+                            ),
+                            Container(
+                              width: 50,
+                              height: 30,
+                              // color: Colors.grey.withOpacity(0.3),
                               child: Center(
-                                child: Text('-',style: TextStyle(color: white),),
+                                child: Text(
+                                  '${cartItemList[index].quantity}',
+                                  style: TextStyle(),
+                                ),
                               ),
                             ),
-                          ),
-                          Container(
-                            width: 50,
-                            height: 30,
-                            // color: Colors.grey.withOpacity(0.3),
-                            child: Center(
-                              child: Text(
-                                '${cartItemList[index].quantity}',
-                                style: TextStyle(),
+                            GestureDetector(
+                              onTap: () {
+                                Provider.of<CartProvider>(context, listen: false)
+                                    .changeQuantity(cartItemList[index].id, true);
+                              },
+                              child: Container(
+                                width: 35,
+                                height: 35,
+                                decoration: BoxDecoration(
+                                    shape: BoxShape.circle, color: Colors.blue),
+                                child: Center(
+                                  child: Text('+',style: TextStyle(color: white),),
+                                ),
                               ),
-                            ),
-                          ),
-                          GestureDetector(
-                            onTap: () {
-                              Provider.of<CartProvider>(context, listen: false)
-                                  .changeQuantity(cartItemList[index].id, true);
-                            },
-                            child: Container(
-                              width: 35,
-                              height: 35,
-                              decoration: BoxDecoration(
-                                  shape: BoxShape.circle, color: Colors.blue),
-                              child: Center(
-                                child: Text('+',style: TextStyle(color: white),),
-                              ),
-                            ),
-                          )
-                        ],
-                      ),
-                    ],
+                            )
+                          ],
+                        ),
+                      ],
+                    ),
                   ),
                 ],
               ),

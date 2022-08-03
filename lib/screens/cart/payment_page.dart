@@ -147,6 +147,104 @@ class _PaymentPageState extends State<PaymentPage> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
+                            '   Kpay/Wave',
+                            style:
+                            TextStyle(color: Colors.black87, fontSize: 16),
+                          ),
+                          Container(
+                            padding: EdgeInsets.symmetric(
+                                horizontal: 10, vertical: 10),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                // Icon(
+                                //   Icons.send,
+                                //   color: Colors.black87,
+                                // ),
+                                // SizedBox(
+                                //   width: 15,
+                                // ),
+                                Text(
+                                  'Phone Number',
+                                  style: TextStyle(color: Colors.black54),
+                                ),
+                                Text(
+                                  '09777284176',
+                                  style: TextStyle(color: Colors.black87),
+                                )
+                              ],
+                            ),
+                          ),
+                          Container(
+                            padding: EdgeInsets.symmetric(
+                                horizontal: 10, vertical: 10),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                // Icon(
+                                //   Icons.send,
+                                //   color: Colors.black87,
+                                // ),
+                                // SizedBox(
+                                //   width: 15,
+                                // ),
+                                Text(
+                                  'Name',
+                                  style: TextStyle(color: Colors.black54),
+                                ),
+                                Text(
+                                  'Su Su Hlaing',
+                                  style: TextStyle(color: Colors.black87),
+                                )
+                              ],
+                            ),
+                          ),
+                          // Container(
+                          //   padding: EdgeInsets.symmetric(
+                          //       horizontal: 10, vertical: 10),
+                          //   child: Row(
+                          //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          //     children: [
+                          //       // Icon(
+                          //       //   Icons.send,
+                          //       //   color: Colors.black87,
+                          //       // ),
+                          //       // SizedBox(
+                          //       //   width: 15,
+                          //       // ),
+                          //       Text(
+                          //         'Bank Name',
+                          //         style: TextStyle(color: Colors.black54),
+                          //       ),
+                          //       Text(
+                          //         'Aya Bank',
+                          //         style: TextStyle(color: Colors.black87),
+                          //       )
+                          //     ],
+                          //   ),
+                          // ),
+                        ],
+                      ),
+                    ),
+                    Container(
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10),
+                        color: Colors.white,
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.grey.withOpacity(0.2),
+                            spreadRadius: 1,
+                            blurRadius: 2,
+                            offset: Offset(0, 3), // changes position of shadow
+                          ),
+                        ],
+                      ),
+                      margin: EdgeInsets.symmetric(vertical: 10),
+                      padding: EdgeInsets.symmetric(vertical: 10),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
                             '   Thailand',
                             style:
                                 TextStyle(color: Colors.black87, fontSize: 16),

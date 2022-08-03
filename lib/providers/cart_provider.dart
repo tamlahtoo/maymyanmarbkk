@@ -149,6 +149,10 @@ class CartProvider with ChangeNotifier {
     await calculateTotalPrice();
   }
 
+  changeCartItemPrice(int itemPrice)async {
+
+  }
+
   updateCart() async {
     final prefs = await SharedPreferences.getInstance();
     final String? token = prefs.getString('token');
@@ -194,6 +198,14 @@ class CartProvider with ChangeNotifier {
             item.quantity -= 1;
           }
         }
+        // ///for discount
+        // if(item.discount_amount!=0 && item.quantity>=item.min_number_of_product_for_discount){
+        //   int newPrice = item.product_price-item.discount_amount;
+        //   item.product_price = newPrice;
+        // }else if(item.discount_amount!=0 && item.quantity>=item.min_number_of_product_for_discount){
+        //   int newPrice = item.product_price-item.discount_amount;
+        //   item.product_price = newPrice;
+        // }
       }
       int pricee = item.quantity * item.product_price;
       _totalPrice += pricee;

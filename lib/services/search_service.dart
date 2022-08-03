@@ -13,7 +13,7 @@ searchProductService(String token, String keyword) async {
     var data = jsonDecode(response.body.toString());
     ///check the status
     if (data['status'] == 'success') {
-      List productList = data['products'];
+      List productList = data['products']['data'];
       List<Product> products = List<Product>.from(productList.map((model)=> Product.fromJson(model)));
       return products;
     } else if (data['status'] == 'fail') {

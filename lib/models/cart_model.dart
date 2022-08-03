@@ -9,6 +9,8 @@ class CartItem {
     required this.quantity,
     required this.createdAt,
     required this.updatedAt,
+    required this.discount_amount,
+    required this.min_number_of_product_for_discount
   });
 
   int id;
@@ -20,6 +22,8 @@ class CartItem {
   int quantity;
   DateTime createdAt;
   DateTime updatedAt;
+  int discount_amount;
+  int min_number_of_product_for_discount;
 
   factory CartItem.fromJson(Map<String, dynamic> json) => CartItem(
     id: json["id"],
@@ -31,6 +35,8 @@ class CartItem {
     quantity: json["quantity"],
     createdAt: DateTime.parse(json["created_at"]),
     updatedAt: DateTime.parse(json["updated_at"]),
+    discount_amount: json['discount_amount']??0,
+    min_number_of_product_for_discount: json['min_number_of_product_for_discount']??0,
   );
 
   Map<String, dynamic> toJson() => {
