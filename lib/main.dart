@@ -65,7 +65,7 @@ class MyApp extends StatelessWidget {
       );
     } else {
       return MaterialApp(
-        title: 'Flutter Demo',
+        title: 'May Myanmar BKK',
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
           primarySwatch: Colors.blue,
